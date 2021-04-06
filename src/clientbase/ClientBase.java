@@ -21,14 +21,11 @@ public class ClientBase {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Apertua connessione");
         try {
-            Socket server = new Socket("127.0.0.1", 5500);
+            Socket server = new Socket("socket", 5500);
 
-            PrintWriter out
-                    = new PrintWriter(server.getOutputStream(), true);
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(server.getInputStream()));
+            PrintWriter out = new PrintWriter(server.getOutputStream(), true);
+            BufferedReader in = new BufferedReader(new InputStreamReader(server.getInputStream()));
             Scanner tastiera = new Scanner(System.in);
             String s = "";
             while (!s.equals("exit")) {
@@ -44,7 +41,7 @@ public class ClientBase {
 
             in.close();
             server.close();
-            System.out.println("chiusura connessione");
+            System.out.println("connessione interrotta");
         } catch (IOException ex) {
             Logger.getLogger(ClientBase.class.getName()).log(Level.SEVERE, null, ex);
         }
